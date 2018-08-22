@@ -1,9 +1,4 @@
 ---
 
-- name: Ensure all necessary RHEL7 repositories are enabled for this system
-  command: >
-    subscription-manager repos
-    --enable=rhel-7-server-rpms
-    --enable=rhel-7-server-optional-rpms
-    --enable=rhel-7-server-supplementary-rpms
-    --enable=rhel-7-server-extras-rpms
+- name: Run OS-specific repository tasks
+  include_tasks: "{{ ansible_distribution }}.yml"
