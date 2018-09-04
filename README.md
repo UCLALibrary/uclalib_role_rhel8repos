@@ -1,14 +1,19 @@
 uclalib_role_rhel7repos
 =========
 
-Ansible role to ensure the base set of RHEL7 yum repositories are enabled on the system.
+Ansible role to ensure the base set of RHEL7/CentOS yum repositories are enabled on the system.
 
-These repositories include:
+RHEL7 repositories include:
 
 * `rhel-7-server-rpms`
 * `rhel-7-server-optional-rpms`
 * `rhel-7-server-supplementary-rpms`
 * `rhel-7-server-extras-rpms`
+
+CentOS7 repositories include:
+* `base`
+* `updates`
+* `extras`
 
 Requirements
 ------------
