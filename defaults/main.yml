@@ -1,0 +1,28 @@
+---
+
+# Variables used when registering subscriptions via activation key
+#-------------------------------------------------------------------
+
+# Organization ID associated with a Red Hat account
+rhel_org_id: ""
+
+# Activation Key associated with your valid Red Hat subscription
+rhel_activation_key: ""
+
+#-------------------------------------------------------------------
+
+# Variables used when registering subscriptions via pool ids
+#-------------------------------------------------------------------
+
+# Username of Red Hat account with privileges to register hosts
+rhel_username: ""
+
+# Password associated with username that has privileges to register hosts
+rhel_password: ""
+
+# Pool ID that is associated with a Red Hat subscription
+rhel_pool_id: ""
+
+#-------------------------------------------------------------------
+
+exclude_list: "*shibboleth* *java* *tomcat* *varnish* *Pound* *haproxy* *memcached* *jenkins* *ansible*"
