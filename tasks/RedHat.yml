@@ -1,18 +1,16 @@
 ---
 
-- name: Determine if the system has a attached valid Red Hat subscription
+- name: Establish subscription status
   shell: >
-    subscription-manager status | grep -o Current
+    subscription-manager status | grep -i overall | cut -d ':' -f2 | xargs
   register: subscription_status
-  changed_when: False
-  failed_when: subscription_status.rc > 1
 
 - name: Ensure the system is registered with a Red Hat subscription using an activation key
   redhat_subscription:
     state: present
     org_id: "{{ rhel_org_id }}"
     activationkey: "{{ rhel_activation_key }}"
-    force_register: "{{ 'yes' if subscription_status.rc == 0 else 'no' }}"
+    force_register: "{{ 'yes' if subscription_status.stdout != 'Current' else 'no' }}"
   when: rhel_activation_key != ""
 
 - name: Ensure the system is registered with a Red Hat subscription using a poolid
@@ -21,7 +19,7 @@
     username: "{{ rhel_username }}"
     password: "{{ rhel_password }}"
     pool_ids: "{{ rhel_pool_id }}"
-    force_register: "{{ 'yes' if subscription_status.rc == 0 else 'no' }}"
+    force_register: "{{ 'yes' if subscription_status.stdout != 'Current' else 'no' }}"
   when: rhel_pool_id != ""
 
 - name: Ensure all necessary RHEL7 repositories are enabled for this system
