@@ -25,4 +25,7 @@ rhel_pool_id: ""
 
 #-------------------------------------------------------------------
 
+# By default include the exclude list
+
+include_exclude: "present"
 exclude_list: "*shibboleth* *java* *tomcat* *varnish* *Pound* *haproxy* *memcached* *jenkins* *ansible*"

@@ -35,5 +35,5 @@
     path: /etc/yum.conf
     insertafter: '^installonly_limit='
     line: "exclude={{ exclude_list }}"
-    state: present
+    state: "{{ include_exclude }}"
   when: ansible_domain == "library.ucla.edu"
