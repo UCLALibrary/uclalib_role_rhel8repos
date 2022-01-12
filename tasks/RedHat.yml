@@ -34,6 +34,7 @@
   lineinfile:
     path: /etc/yum.conf
     insertafter: '^installonly_limit='
+    regexp: 'exclude=.*'
     line: "exclude={{ exclude_list }}"
     state: "{{ include_exclude }}"
   when: ansible_domain == "library.ucla.edu"
