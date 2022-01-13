@@ -25,7 +25,16 @@ rhel_pool_id: ""
 
 #-------------------------------------------------------------------
 
-# By default include the exclude list
+# Variables used to control yum exclusion lists
+#-------------------------------------------------------------------
 
-include_exclude: "present"
-exclude_list: "*shibboleth* *java* *tomcat* *varnish* *Pound* *haproxy* *memcached* *jenkins* *ansible*"
+# An empty exclude_list will remove exclusions, even if exclude_list_extra
+# has elements.
+
+# Site-wide packages to exclude from yum updates
+exclude_list: []
+
+# Per group or host additional packages to exclude from yum updates
+exclude_list_extra: []
+
+#-------------------------------------------------------------------

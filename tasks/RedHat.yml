@@ -30,11 +30,21 @@
     --enable=rhel-7-server-supplementary-rpms
     --enable=rhel-7-server-extras-rpms
 
+- name: Remove excludes, if empty
+  lineinfile:
+    path: '{{ yum_conf }}'
+    regexp: 'exclude=.*'
+    state: absent
+  when:
+    - exclude_list | length == 0
+
 - name: Insert exclude list in yum.conf file
   lineinfile:
-    path: /etc/yum.conf
+    path: '{{ yum_conf }}'
     insertafter: '^installonly_limit='
     regexp: 'exclude=.*'
-    line: "exclude={{ exclude_list }}"
-    state: "{{ include_exclude }}"
-  when: ansible_domain == "library.ucla.edu"
+    line: 'exclude={{ ( exclude_list + exclude_list_extra ) | join (" ") }}'
+    state: present
+  when:
+    - exclude_list | length > 0
+    - ansible_domain == "library.ucla.edu"
