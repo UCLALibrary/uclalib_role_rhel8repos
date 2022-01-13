@@ -1,0 +1,4 @@
+---
+
+# Pathname to yum.conf
+yum_conf: /etc/yum.conf

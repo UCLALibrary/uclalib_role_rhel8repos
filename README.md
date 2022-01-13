@@ -53,6 +53,11 @@ Variables used when registering subscriptions via pool ids
 
 * `rhel_pool_id` - defines the pool ID that is associated with a Red Hat subscription
 
+Variables used for package update exclusion 
+* `exclude_list` - defines the packages that are added to the `yum.conf` exclusion list. This variable is designed to be site-wide as a base exclusion that will apply to all hosts. If this list is empty, any existing exclusions will be removed.
+
+* `exclude_list_extra` - defined additional packages that will be added to the exclude list. This variable is designed to be applied at the group or host level, for those hosts that have additional exclusion requirements beyond the base site-wide exclusion. If this list has entries, but the `exclude_list` is empty then any defined exclusions will be removed.
+
 Dependencies
 ------------
 
