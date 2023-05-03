@@ -22,13 +22,11 @@
     force_register: "{{ 'yes' if subscription_status.stdout != 'Current' else 'no' }}"
   when: rhel_pool_id != ""
 
-- name: Ensure all necessary RHEL7 repositories are enabled for this system
+- name: Ensure all necessary RHEL8 repositories are enabled for this system
   command: >
     subscription-manager repos
-    --enable=rhel-7-server-rpms
-    --enable=rhel-7-server-optional-rpms
-    --enable=rhel-7-server-supplementary-rpms
-    --enable=rhel-7-server-extras-rpms
+    --enable=rhel-8-for-x86_64-baseos-rpms
+    --enable=rhel-8-for-x86_64-appstream-rpms
 
 - name: Remove excludes, if empty
   lineinfile:

@@ -4,4 +4,4 @@
     rhel_org_id: "1234567"
     rhel_activation_key: "sandboxactivation"
   roles:
-     - { role: uclalib_role_rhel7repos }
+     - { role: uclalib_role_rhel8repos }

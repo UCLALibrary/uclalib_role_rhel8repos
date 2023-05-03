@@ -1,0 +1,10 @@
+---
+
+- name: Ensure yum-utils package is installed
+  yum:
+    name: yum-utils
+    state: present
+
+- name: Ensure all necessary Rocky Linux repositories are enabled for this system
+  command: >
+    yum-config-manager --enable baseos appstream

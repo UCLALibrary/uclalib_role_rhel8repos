@@ -1,26 +1,23 @@
-uclalib_role_rhel7repos
+uclalib_role_rhel8repos
 =========
 
-Ansible role that manages RHEL subscriptions and ensures the base set of RHEL7/CentOS7 yum repositories are enabled on the system.
+Ansible role that manages RHEL subscriptions and ensures the base set of RHEL8/Rocky Linux 8 yum repositories are enabled on the system.
 
-If the host system is CentOS, subscription management is skipped.
+If the host system is Rocky Linux, subscription management is skipped.
 
 If the host system is RHEL, you have option of attaching a Red Hat subscription using one of two methods:
 
 1. Defining variables for `Organization ID` and `Activation Key`
 2. Defining variables for `Username`, `Password`, `Pool ID`
 
-RHEL7 repositories include:
+RHEL8 repositories include:
 
-* `rhel-7-server-rpms`
-* `rhel-7-server-optional-rpms`
-* `rhel-7-server-supplementary-rpms`
-* `rhel-7-server-extras-rpms`
+* `rhel-8-for-x86_64-baseos-rpms`
+* `rhel-8-for-x86_64-appstream-rpms`
 
-CentOS7 repositories include:
-* `base`
-* `updates`
-* `extras`
+Rocky Linux 8 repositories include:
+* `baseos`
+* `appstream`
 
 Requirements
 ------------
@@ -75,4 +72,4 @@ A sample is provided below including variables using the activation key method w
         rhel_org_id: "123456"
         rhel_activation_key: "activation-key-string"
       roles:
-         - { role: uclalib_role_rhel7repos }
+         - { role: uclalib_role_rhel8repos }
