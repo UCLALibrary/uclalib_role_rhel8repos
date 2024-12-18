@@ -46,3 +46,8 @@
   when:
     - exclude_list | length > 0
     - ansible_domain == "library.ucla.edu"
+
+- name: Ensure yum-utils package is installed
+  yum:
+    name: yum-utils
+    state: present
