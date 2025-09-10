@@ -1,0 +1,4 @@
+# This file contains ignores rule violations for ansible-lint
+tasks/RedHat.yml fqcn[action-core]
+tasks/Rocky.yml fqcn[action-core]
+tasks/main.yml fqcn[action-core]
