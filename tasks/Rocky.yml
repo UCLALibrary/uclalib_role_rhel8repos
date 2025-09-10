@@ -8,3 +8,5 @@
 - name: Ensure all necessary Rocky Linux repositories are enabled for this system
   command: >
     yum-config-manager --enable baseos appstream
+  changed_when: '"" in yum_config_manager.stdout'
+  register: yum_config_manager

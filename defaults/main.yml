@@ -1,7 +1,7 @@
 ---
 
 # Variables used when registering subscriptions via activation key
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 # Organization ID associated with a Red Hat account
 rhel_org_id: ""
@@ -9,10 +9,10 @@ rhel_org_id: ""
 # Activation Key associated with your valid Red Hat subscription
 rhel_activation_key: ""
 
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 # Variables used when registering subscriptions via pool ids
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 # Username of Red Hat account with privileges to register hosts
 rhel_username: ""
@@ -23,10 +23,10 @@ rhel_password: ""
 # Pool ID that is associated with a Red Hat subscription
 rhel_pool_id: ""
 
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 # Variables used to control yum exclusion lists
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------
 
 # An empty exclude_list will remove exclusions, even if exclude_list_extra
 # has elements.
@@ -37,4 +37,4 @@ exclude_list: []
 # Per group or host additional packages to exclude from yum updates
 exclude_list_extra: []
 
-#-------------------------------------------------------------------
+# -------------------------------------------------------------------

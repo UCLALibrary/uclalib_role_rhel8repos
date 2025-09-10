@@ -3,15 +3,17 @@
 dependencies: []
 
 galaxy_info:
+  role_name: uclalib_role_rhel8repos
+  namespace: uclalibrary
   author: "Stephen Gurnick - https://github.com/sgurnick/"
   description: "Enable base set of RHEL8 yum repositories"
   company: "UCLA Library"
   license: "reference license.txt"
   min_ansible_version: '2.4'
   platforms:
-  - name: EL
-    versions:
-    - '8'
+    - name: EL
+      versions:
+        - '8'
   galaxy_tags:
     - rhel
     - repository

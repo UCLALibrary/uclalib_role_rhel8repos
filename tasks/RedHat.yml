@@ -1,8 +1,10 @@
 ---
 
 - name: Establish subscription status
-  shell: >
+  shell: |
+    set -o pipefail
     subscription-manager status | grep -i overall | cut -d ':' -f2 | xargs
+  changed_when: false
   register: subscription_status
 
 - name: Ensure the system is registered with a Red Hat subscription using an activation key
@@ -27,27 +29,28 @@
     subscription-manager repos
     --enable=rhel-8-for-x86_64-baseos-rpms
     --enable=rhel-8-for-x86_64-appstream-rpms
-
-- name: Remove excludes, if empty
-  lineinfile:
-    path: '{{ yum_conf }}'
-    regexp: 'exclude=.*'
-    state: absent
-  when:
-    - exclude_list | length == 0
-
-- name: Insert exclude list in yum.conf file
-  lineinfile:
-    path: '{{ yum_conf }}'
-    insertafter: '^installonly_limit='
-    regexp: 'exclude=.*'
-    line: 'exclude={{ ( exclude_list + exclude_list_extra ) | join (" ") }}'
-    state: present
-  when:
-    - exclude_list | length > 0
-    - ansible_domain == "library.ucla.edu"
+  changed_when: '"" in subscripton_manager_repose.stdout'
+  register: subscription_manager_repos
 
 - name: Ensure yum-utils package is installed
   yum:
-    name: yum-utils
+    name:
+      - yum-utils
+      - dnf-command(versionlock)
     state: present
+
+- name: Remove versionlocks, if empty
+  command:
+    cmd: dnf versionlock clear
+  changed_when: false
+  when:
+    - exclude_list | length == 0
+
+- name: Set versionlocks
+  command:
+    cmd: dnf versionlock add '{{ (exclude_list + exclude_list_extra) | join(" ") }}'
+  changed_when: '"Adding versionlock on" in dnf_versionlock.stdout'
+  register: dnf_versionlock
+  when:
+    - exclude_list | length > 0
+    - ansible_domain == "library.ucla.edu"
