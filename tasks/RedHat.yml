@@ -29,7 +29,7 @@
     subscription-manager repos
     --enable=rhel-8-for-x86_64-baseos-rpms
     --enable=rhel-8-for-x86_64-appstream-rpms
-  changed_when: '"" in subscripton_manager_repose.stdout'
+  changed_when: '"" in subscripton_manager_repos.stdout'
   register: subscription_manager_repos
 
 - name: Ensure yum-utils package is installed
